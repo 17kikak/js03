@@ -6,25 +6,23 @@
     <script>
       const cat1 = { name: "Ditto", animal: "cat" };
       const cat2 = { name: "Ditto", animal: "cat" };
-      let ditto = (a, b) => {
-        let keysa = Object.keys(cat1);
-        console.log(keysa);
-        let keysb = Object.keys(cat2);
-        console.log(keysb);
-        console.log(a[keysa]);
-        console.log(b[keysb]);
+      let final;
+      const ditto = (a, b) => {
+        const keysa = Object.keys(cat1);
+        const keysb = Object.keys(cat2);
         if (keysa.length === keysb.length){
-        for(let i = 0; i < keysa.length; i++){
-          console.log(keysa[i]);
-          if (keysa[i] === keysb[i] && a[keysa[i]] === b[keysb[i]]) {
-            console.log(true);
-          } else {
-            console.log(false);
+          for(let i = 0; i < keysa.length; i++){
+            if (keysa[i] === keysb[i] && a[keysa[i]] === b[keysb[i]]) {
+              final = true;
+            } else {
+              final = false;
+            }
           }
+          console.log(final);
+        } else {
+          final = false;
+          console.log(final);
         }
-      } else {
-        console.log(false);
-      }
       }
       ditto(cat1, cat2);
     </script>
