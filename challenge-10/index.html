@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <script>
+      const cat1 = { name: "Ditto", animal: "cat" };
+      const cat2 = { name: "Ditto", animal: "cat" };
+      let final;
+      const ditto = (a, b) => {
+        const keysa = Object.keys(cat1);
+        const keysb = Object.keys(cat2);
+        if (keysa.length === keysb.length){
+          for(let i = 0; i < keysa.length; i++){
+            if (keysa[i] === keysb[i] && a[keysa[i]] === b[keysb[i]]) {
+              final = true;
+            } else {
+              final = false;
+            }
+          }
+          console.log(final);
+        } else {
+          final = false;
+          console.log(final);
+        }
+      }
+      ditto(cat1, cat2);
+    </script>
+  </body>
+</html>
