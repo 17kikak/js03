@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <input type="text" id="n"></input>
+    <button id="create">Create</button>
+    <table id="table">
+    </table>
+    <script>
+      $('#create').click(()=> {
+        let response = $('#n').val();
+        console.log(response);
+        for (let i = 0; i < response; i++){
+          $('#table').append(`<tr class = "row${i}"><th>bye</th></tr>`);
+          for(let x = 0; x < response - 1; x++) {
+            $('.row' + i).append(`<td><th>bye</th></td>`);
+          }
+        }
+      })
+
+    </script>
+  </body>
+</html>
