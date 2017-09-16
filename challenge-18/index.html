@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <script>
+      let array = [3, 1, 8, 2, 7, 6];
+      const sortArray = (arr) => {
+        for(let x = 0; x < arr.length; x++) {
+          for (let i = 0; i < arr.length; i++){
+            if(arr[i] > arr[i+1]) {
+              let variable1 = arr[i];
+              array[i] = array[i+1];
+              array[i+1] = variable1;
+              console.log(array);
+            }
+          }
+        }
+      }
+      sortArray(array);
+    </script>
+  </body>
+</html>
