@@ -8,18 +8,19 @@
   <body>
     <script>
       $('#test').click(() => {
-        let response = $('#number').val();
-        response = response.split('').map(Number);
-        if (response.length === 16 || response.length === 15){
-          for (var i = response.length - 2; i > -1; i = i - 2){
-            response[i] = response[i] * 2;
-            if (response[i] > 9) {
-              response[i] = response[i] - 9;
+        const creditCardNumber = $('#number').val();
+        const digits = creditCardNumber.split('').map(Number);
+        if (digits.length === 16 || digits.length === 15){
+          for (let i = digits.length - 2; i > -1; i = i - 2){
+            digits[i] = digits[i] * 2;
+            if (digits[i] > 9) {
+              digits[i] = digits[i] - 9;
             }
           }
           let add = 0;
-          for (var x = 0; x < response.length; x++) {
-            add = add + response[x];
+          for (let x = 0; x < digits.length; x++) {
+            add = add + digits[x];
+            console.log(add);
           }
           if (add % 10 === 0){
             console.log("Valid!");
