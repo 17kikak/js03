@@ -3,5 +3,27 @@
   <head>
   </head>
   <body>
+    <script>
+      const yesterday = (a, b) => {
+        const charactersA = a.split('');
+        const charactersB = b.split('');
+        let validate = 0;
+        for (let i  = 0; i < charactersA.length; i++){
+          for (let x = 0; x < charactersB.length; x++){
+            if (charactersA[i] === charactersB[x]) {
+              validate = validate + 1;
+              charactersA[i] = 0;
+              charactersB[x] = 0;
+            }
+          }
+        }
+        if (validate === charactersB.length) {
+          console.log("Valid!");
+        } else {
+          console.log("Invalid!");
+        }
+      }
+      yesterday("carrot", "art");
+    </script>
   </body>
 </html>
