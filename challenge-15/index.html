@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <input type="text" id="time" placeholder="Time"/>
+    <button id= "setA">Set Alarm</button>
+    <br>
+    <input type="text" id="min" placeholder="Minutes"/>
+    <input type="text" id="sec" placeholder="Seconds"/>
+    <button id="startT">Start Timer</button>
+    <br>
+    <p id = "stopwatch">0</p> <br>
+    <button id="startS">Start Stopwatch</button>
+    <button id="pp">Pause/Play</button>
+    <button id="reset">Reset</button>
+    <script>
+      $('#setA').click( () => {
+        let timeForAlarm = $('#time').val();
+      });
+      $('#startT').click( () => {
+        let minForTimer = $('#min').val() * 60000;
+        let secForTimer = $('#sec').val() * 1000;
+        timeForTimer = minForTimer + secForTimer;
+        setTimeout(timer, timeForTimer);
+      });
+      let timer = () => {
+        alert("Your timer is up!")
+      }
+    </script>
+  </body>
+</html>
