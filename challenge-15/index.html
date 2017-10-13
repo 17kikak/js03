@@ -11,14 +11,33 @@
     <input type="text" id="sec" placeholder="Seconds"/>
     <button id="startT">Start Timer</button>
     <br>
-    <p id = "stopwatch">0</p> <br>
+    <p id="stopwatch">0</p> <br>
     <button id="startS">Start Stopwatch</button>
-    <button id="pp">Pause/Play</button>
+    <button id="pause">Pause</button>
+    <button id="play">Play</button>
     <button id="reset">Reset</button>
     <script>
+      let i = 0;
       $('#setA').click( () => {
         let timeForAlarm = $('#time').val();
       });
+      $('#startS').click( () => {
+          let aSecond = () => {
+            i = i + 1;
+            document.getElementById("stopwatch").innerHTML = i;
+            $('#reset').click( () => {
+              clearInterval(myStopwatch);
+              document.getElementById("stopwatch").innerHTML = 0;
+            })
+            $('#pause').click( () => {
+              clearInterval(myStopwatch);
+            })
+            $('#play').click( () => {
+              setInterval(aSecond, 1000);
+            })
+          }
+          let myStopwatch = setInterval(aSecond, 1000);
+        })
       $('#startT').click( () => {
         let minForTimer = $('#min').val() * 60000;
         let secForTimer = $('#sec').val() * 1000;
