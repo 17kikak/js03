@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <script>
+      $("body").append(`<ul>
+                          <li style="color:green" class="green">Central Park</li>
+                          <li style="color:green" class="green">Statue of Liberty</li>
+                          <li style="color:blue" class="blue">Empire State Building</li>
+                          <li style="color:gold" class="yellow">Rockefeller Center</li>
+                          <li style="color:red" class="red">Times Square</li>
+                          <li style="color:gold" class="yellow">High Line</li>
+                        </ul>`)
+      $("li").click((listItem) => {
+        alert(listItem.target.innerHTML + ", " + listItem.target.className);
+      });
+      $("body").append(`<input id="userInput" value="Text|Color"></input><button id="submitText">Submit</button>`);
+      $("#submitText").click(() => {
+        let string = $("#userInput")[0].value;
+        let line = string.indexOf("|");
+        console.log(line);
+        let color = string.slice(line + 1);
+        console.log(color);
+        let name = string.slice(0, line);
+        console.log(name);
+        alert(name + " " + color);
+        $("body").append(`<p style="color: ${color}">${name}</p>`);
+      });
+    </script>
+  </body>
+</html>
