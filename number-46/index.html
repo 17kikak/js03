@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <script>
+      class Shape {
+        constructor(length, width) {
+          this.length = length;
+          this.width = width;
+        }
+
+        get area() {
+          return this.length * this.width;
+        }
+
+        get name() {
+          return "Default Shape";
+        }
+      }
+
+      class Square extends Shape {
+        constructor(length) {
+          super(length, length);
+        }
+
+        get name() {
+          return "Square";
+        }
+      }
+
+      class Rectangle extends Shape {
+        constructor(length, width) {
+          super(length, width);
+        }
+
+        get name() {
+          return "Rectangle";
+        }
+      }
+
+      class Triangle extends Shape {
+        constructor(length, width) {
+          super(length, width / 2);
+        }
+
+        get name() {
+          return "Triangle";
+        }
+      }
+      class Circle extends Shape {
+        constructor(radius) {
+          super(radius * radius, Math.PI);
+        }
+
+        get name() {
+          return "Circle";
+        }
+      }
+      class Cube extends Shape {
+        constructor(length, width, height) {
+          super(length * width, height);
+        }
+
+        get name() {
+          return "Cube";
+        }
+      }
+
+      const shapey = new Cube(2, 2, 2);
+      console.log(shapey.area);
+      console.log(shapey.name);
+
+    </script>
+  </body>
+</html>
