@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cloudboost.io/js-sdk/cloudboost.js"></script>
+  </head>
+  <body>
+    <style>
+    </style>
+    <p>Username</p>
+    <input type="text" id="user"></input>
+    <p>Password</p>
+    <input type="text" id="pass"></input>
+    <p>Email</p>
+    <input type="text" id="email"></input>
+    <br><br>
+    <button id="signup">Sign Up</button>
+    <br><br>
+    <a href="signin.html">Have an account? Sign in</a></li>
+    <script>
+      CB.CloudApp.init('wbghbbgpthbt', 'aea4047f-bb38-45cd-ba8b-43fbdf0b65ac');
+      $("#signup").click( () => {
+        var user = new CB.CloudUser();
+        user.set('username',$("#user").val());
+        user.set('password', $("#pass").val());
+        user.set('email', $("#email").val());
+        user.signUp({
+        success: function(user) {
+          console.log("Registered!")
+          window.location.href = "map.html";
+        },
+        error: function(error) {
+          alert("Something went wrong.");
+        }
+        });
+      });
+    </script>
+  </body>
+</html>

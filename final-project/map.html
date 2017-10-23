@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset='utf-8' />
+      <title></title>
+      <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+      <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.js'></script>
+      <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.css' rel='stylesheet' />
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <style>
+          body {
+            margin:0;
+            padding:0;
+          }
+          #map {
+            position:absolute;
+            top:0;
+            bottom:0;
+            width:100%;
+          }
+          #menu {
+          background: #444;
+          position: absolute;
+          z-index: 1;
+          top: 10px;
+          right: 10px;
+          }
+      </style>
+  </head>
+  <body>
+    <div id="menu">
+      <input type="text" id="keyword"></input>
+      <button id="search">Search</button>
+    </div>
+    <div id='map'></div>
+    <input type="text"><input>
+    <script>
+      mapboxgl.accessToken = 'pk.eyJ1IjoiMTdraWthayIsImEiOiJjajFiNGV6OXowYThmMndxdXkza2cwdjkzIn0.oWzYH-kOaKw1mT5ZEZoKGg';
+      var map = new mapboxgl.Map({
+          container: 'map', // container id
+          style: 'mapbox://styles/mapbox/dark-v9', // stylesheet location
+          center: [-30.50, 40], // starting position [lng, lat]
+          zoom: 2 // starting zoom
+      });
+      $("#search").click( () => {
+        let keyword = $("#keyword").val();
+        keyword = keyword.replace(" ", "");
+        $.get(`https://app.ticketmaster.com/discovery/v2/events.json?apikey=cBbUTH4FAtjJuMHrJuKFFs5s2rYa8hgt&keyword=${keyword}`, (data) => {
+            console.log(data);
+            for(let i = 0; i < data._embedded.events.length; i++){
+              for(let x = 0; x < data._embedded.events[i]._embedded.venues.length; x++) {
+                let long = data._embedded.events[i]._embedded.venues[x].location.longitude;
+                console.log("long= " + long);
+                let lat = data._embedded.events[i]._embedded.venues[x].location.latitude;
+                console.log("lat = " + lat);
+              }
+            }
+        })
+      });
+    </script>
+
+  </body>
+</html>
