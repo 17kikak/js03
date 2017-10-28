@@ -11,8 +11,6 @@
       <input type="text" id="user"></input>
       <p>Password</p>
       <input type="password" id="pass"></input>
-      <p>Email</p>
-      <input type="text" id="email"></input>
       <br><br>
       <button id="signin">Sign In</button>
       <br><br>
@@ -30,7 +28,7 @@
             window.location.href = "map.html";
           },
           error: function(error) {
-            //Error.
+            $("body").append(`<p>You were not able to sign in.</p>`);
           }
           });
         });

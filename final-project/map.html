@@ -47,16 +47,45 @@
         keyword = keyword.replace(" ", "");
         $.get(`https://app.ticketmaster.com/discovery/v2/events.json?apikey=cBbUTH4FAtjJuMHrJuKFFs5s2rYa8hgt&keyword=${keyword}`, (data) => {
             console.log(data);
+            let markers = [];
             for(let i = 0; i < data._embedded.events.length; i++){
               for(let x = 0; x < data._embedded.events[i]._embedded.venues.length; x++) {
                 let long = data._embedded.events[i]._embedded.venues[x].location.longitude;
                 console.log("long= " + long);
                 let lat = data._embedded.events[i]._embedded.venues[x].location.latitude;
                 console.log("lat = " + lat);
+                let marker = {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [long, lat]
+                    }
+                  };
+                markers.push(marker);
+                };
               }
-            }
-        })
-      });
+                map.addLayer({
+                    "id": "points",
+                    "type": "symbol",
+                    "source": {
+                        "type": "geojson",
+                        "data": {
+                            "type": "FeatureCollection",
+                            "features": markers,
+                            "properties": {
+                              "title": "Event",
+                              "icon": "circle-15"
+                            }
+                        }
+                    },
+                    "layout": {
+                        "icon-image": "circle-15",
+                        "icon-size": 1
+                    }
+                });
+              console.log(markers);
+          });
+        });
     </script>
 
   </body>
