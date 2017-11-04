@@ -51,11 +51,12 @@
             for(let i = 0; i < data._embedded.events.length; i++){
               for(let x = 0; x < data._embedded.events[i]._embedded.venues.length; x++) {
                 let long = data._embedded.events[i]._embedded.venues[x].location.longitude;
-                console.log("long= " + long);
                 let lat = data._embedded.events[i]._embedded.venues[x].location.latitude;
-                console.log("lat = " + lat);
                 let marker = {
                     "type": "Feature",
+                    "properties": {
+                      "description": `<strong>${data._embedded.events[i].name}</strong><p>${data._embedded.events[i]._embedded.venues[x].name}</p> <p>${data._embedded.events[i]._embedded.venues[x].city.name}, ${data._embedded.events[i]._embedded.venues[x].country.name}</p><p>${data._embedded.events[i].dates.start.localDate}</p><a href="detailed.html#${data._embedded.events[i].id}">More Details</a>`
+                    },
                     "geometry": {
                         "type": "Point",
                         "coordinates": [long, lat]
@@ -82,6 +83,24 @@
                         "icon-image": "circle-15",
                         "icon-size": 1
                     }
+                });
+                var popup = new mapboxgl.Popup({
+                    closeButton: true,
+                    closeOnClick: false
+                });
+                map.on('click', 'points', function(e) {
+                    // Change the cursor style as a UI indicator.
+                    map.getCanvas().style.cursor = 'pointer';
+
+                    // Populate the popup and set its coordinates
+                    // based on the feature found.
+                    popup.setLngLat(e.features[0].geometry.coordinates)
+                        .setHTML(e.features[0].properties.description)
+                        .addTo(map);
+                });
+
+                map.on('mouseleave', 'points', function() {
+                    map.getCanvas().style.cursor = '';
                 });
               console.log(markers);
           });

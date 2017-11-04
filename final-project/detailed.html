@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <style>
+      #page {
+        text-align: center;
+        padding-left: 10%;
+        padding-right: 10%;
+      }
+    </style>
+    <script>
+      let id = window.location.hash;
+      id = id.replace("#", "");
+      console.log(id);
+      $.get(`https://app.ticketmaster.com/discovery/v2/events.json?apikey=cBbUTH4FAtjJuMHrJuKFFs5s2rYa8hgt&id=${id}`, (data) => {
+        let events = data._embedded.events[0];
+        console.log(events);
+        $("body").append(`<div id="page">
+                          <h1>${events.name}</h1>
+                          <p>${events._embedded.venues[0].name}</p>
+                          <p>${events._embedded.venues[0].city.name}, ${events._embedded.venues[0].country.name}</p>
+                          <p>${events.dates.start.localTime}, ${events.dates.start.localDate}</p>
+                          <img src="${events.images[0].url}"/> <br>
+                          <a href="${events.url}">Buy Tickets Here</a>
+                          </div>
+                          `);
+      });
+    </script>
+  </body>
+</html>
